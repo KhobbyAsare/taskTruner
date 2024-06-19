@@ -1,0 +1,42 @@
+@import "../../../../shared-scss-styles/all-scss-imports.scss";
+
+.partners-section {
+  width: 100%;
+  padding: 20px 0;
+  background: rgba(255, 255, 255, 0.826);
+
+  .container {
+    width: 50%;
+    margin: 0 auto;
+    @include display-flex(row, space-around, center);
+
+    @include screen-breakpoints(phone) {
+      width: 100%;
+    }
+
+    @include screen-breakpoints(tablet-portrait) {
+      width: 90%;
+    }
+
+    .icon {
+      @include display-flex(row, center, center);
+      font-size: 1.5rem;
+      @include screen-breakpoints(phone) {
+        font-size: 1.2rem;
+        flex-wrap: wrap;
+      }
+      svg {
+        width: 50px;
+        height: 100%;
+
+        @include screen-breakpoints(phone) {
+          width: 20px;
+        }
+
+        @include screen-breakpoints(tablet-portrait) {
+          width: 45px;
+        }
+      }
+    }
+  }
+}

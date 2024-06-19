@@ -1,0 +1,81 @@
+@import "../../../shared-scss-styles/all-scss-imports.scss";
+
+.footer-wrapper {
+  width: 100%;
+  padding: 50px 0;
+  background-color: #f8fafc;
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    @include display-flex(row, space-between, center);
+    row-gap: 20px;
+
+    @include screen-breakpoints(tablet-portrait) {
+      @include display-flex(column, center, center);
+    }
+
+    .brandname {
+      @include screen-breakpoints(tablet-portrait) {
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      @include display-flex(row, center, center);
+
+      h1 {
+        font-size: 2rem;
+        color: $primary_color;
+        font-weight: bold;
+      }
+    }
+
+    .navlinks {
+      margin-left: 50px;
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      @include screen-breakpoints(tablet-portrait) {
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 10px;
+        width: 100%;
+      }
+
+      @include screen-breakpoints(phone) {
+        width: 50%;
+        @include display-flex(column, center, flex-start);
+      }
+
+      .nav-div {
+        @include screen-breakpoints(phone) {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+        .nav-header {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 10px;
+          border-bottom: 1px solid whitesmoke;
+        }
+
+        .links-holder {
+          list-style: none;
+          width: 100%;
+          @include display-flex(column, center, center);
+          .link {
+            width: 100%;
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #666;
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: underline;
+              color: $primary_color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

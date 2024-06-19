@@ -1,0 +1,32 @@
+@import "../../../../../../shared-scss-styles/all-scss-imports.scss";
+
+.Board-wrapper {
+  .content-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .Backlog,
+    .Inprogress,
+    .Testing,
+    .Done {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      padding: 10px;
+      border-right: 1px solid #f5f5f5;
+      position: relative;
+      height: 100%;
+      overflow-y: scroll;
+      &:last-child {
+        border: 0px;
+      }
+
+      .title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

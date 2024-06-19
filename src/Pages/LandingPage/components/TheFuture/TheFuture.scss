@@ -1,0 +1,142 @@
+@import "../../../../shared-scss-styles/all-scss-imports.scss";
+
+.thefuture-section {
+  background-color: #fff;
+  height: auto;
+  width: 100%;
+  padding: 50px 0;
+
+  .container {
+    @include display-flex(column, center, center);
+    row-gap: 20px;
+    width: 50%;
+    margin: 0 auto;
+    @include screen-breakpoints(phone) {
+      width: 90%;
+    }
+
+    @include screen-breakpoints(tablet-portrait) {
+      width: 85%;
+      row-gap: 10px;
+    }
+
+    @include screen-breakpoints(desktop){
+      width: 80%;
+    }
+    .ai-p-text {
+      font-size: 1rem;
+      color: $primary_color;
+      margin-bottom: 10px;
+      font-weight: bold;
+      @include screen-breakpoints(tablet-portrait) {
+        font-size: 1.2rem;
+      }
+
+      @include screen-breakpoints(phone) {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+    }
+
+    .ai-h1-text {
+      font-size: 3rem;
+      color: $color-black;
+      margin-bottom: 20px;
+      text-align: center;
+      @include screen-breakpoints(tablet-portrait) {
+        font-size: 2.8rem;
+      }
+
+      @include screen-breakpoints(phone) {
+        font-size: 1.7rem;
+      }
+    }
+
+    .cards {
+      @include display-flex(row, center, flex-start);
+      column-gap: 20px;
+      height: 400px;
+      @include screen-breakpoints(tablet-portrait) {
+        column-gap: 10px;
+      }
+      @include screen-breakpoints(phone) {
+        row-gap: 20px;
+        @include display-flex(column, center, flex-start);
+        height: fit-content;
+      }
+
+      .first-cards {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px 0px #0000001a;
+        overflow: hidden;
+        height: 100%;
+        border-radius: 10px;
+        .top-section {
+          width: 100%;
+          height: 30%;
+          background-color: $primary_color;
+          color: $color-white;
+          @include display-flex(column, center, center);
+          p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffffcf;
+            text-align: center;
+            &:nth-child(2){
+                color: rgb(255, 255, 255)
+            }
+          }
+        }
+
+        .down-section{
+            @include display-flex(row, center, center);
+            height: 100%;
+            .card-1{
+                width: 50%;
+                 background-color: #f1f5f9;
+                 @include display-flex(row, center, center);
+                 height: 100%;
+            }
+            .card-2{
+                width: 50%;
+                height: 100%;
+               padding: 20px;
+                @include display-flex(column, flex-start, flex-start);
+                .save-text{
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    color: $primary_color;
+                    @include screen-breakpoints(tablet-portrait) {
+                        font-size: 1.2rem;
+                    }
+                    @include screen-breakpoints(phone) {
+                        font-size: 0.8rem;
+                    }
+                }
+
+                .save-des{
+                    font-size: 1rem;
+                    color: #282828;
+                    margin-top: 10px;
+                    @include screen-breakpoints(tablet-portrait) {
+                        font-size: 0.9rem;
+                    }
+                    @include screen-breakpoints(phone) {
+                        font-size: 0.7rem;
+                    }
+                }
+            }   
+        }
+      }
+
+      .mobile-card {
+        overflow: hidden;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        background-color: #f1f5f9;
+        @include display-flex(row, center, center);
+      }
+    }
+  }
+}

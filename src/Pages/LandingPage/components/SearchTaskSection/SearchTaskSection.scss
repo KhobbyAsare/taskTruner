@@ -1,0 +1,125 @@
+@import "../../../../shared-scss-styles/all-scss-imports.scss";
+
+.seach-task-wrapper {
+  background-color: #fff;
+  padding: 50px 0;
+  width: 100%;
+
+  .container {
+    @include display-flex(row, flex-start, center);
+    row-gap: 20px;
+    width: 50%;
+    margin: 0 auto;
+    height: 400px;
+
+    @include screen-breakpoints(phone) {
+      width: 95%;
+    }
+
+    @include screen-breakpoints(tablet-portrait) {
+      width: 95%;
+      row-gap: 10px;
+      height: auto;
+      @include display-flex(column, center, center);
+    }
+
+    @include screen-breakpoints(desktop){
+      width: 80%;
+    }
+
+    .text-section {
+      @include display-flex(column, center, flex-start);
+      width: 60%;
+      padding: 20px;
+      @include screen-breakpoints(tablet-portrait) {
+        width: 90%;
+      }
+      .ai-p-text {
+        font-size: 1rem;
+        color: $primary_color;
+        margin-bottom: 10px;
+        font-weight: bold;
+
+        @include screen-breakpoints(tablet-portrait) {
+          font-size: 1.2rem;
+        }
+
+        @include screen-breakpoints(phone) {
+          font-size: 0.8rem;
+          margin: 0;
+        }
+      }
+
+      .ai-h1-text {
+        font-size: 1.5rem;
+        color: $color-black;
+        margin-bottom: 20px;
+
+        @include screen-breakpoints(tablet-portrait) {
+          font-size: 2.8rem;
+        }
+
+        @include screen-breakpoints(phone) {
+          font-size: 1.7rem;
+        }
+      }
+      .features {
+        width: 90%;
+        @include display-flex(column, flex-start, center);
+        row-gap: 20px;
+        .feature {
+          @include display-flex(row, flex-start, center);
+          column-gap: 10px;
+          .icon {
+            background-color: $primary_color;
+            padding: 4px;
+            border-radius: 50%;
+            @include display-flex(row, center, center);
+            svg {
+              width: 30px;
+              height: 30px;
+            }
+          }
+          .text {
+            font-size: 1rem;
+            color: $color-black;
+            @include screen-breakpoints(phone) {
+              font-size: 0.8rem;
+            }
+            h6 {
+              font-size: 1rem;
+              color: $color-black;
+              @include screen-breakpoints(phone) {
+                font-size: 0.8rem;
+              }
+            }
+            p{
+                font-size: 1rem;
+                color: #666666;
+                @include screen-breakpoints(phone) {
+                    font-size: 0.7rem;
+                }
+                
+            }
+          }
+        }
+      }
+    }
+
+    .image-section {
+      width: 40%;
+      height: 100%;
+      background-color: #f0f8ff;
+      border-radius: 10px;
+      @include display-flex(row, center, center);
+      img {
+        // width: 100%;
+        height: auto;
+      }
+
+      @include screen-breakpoints(tablet-portrait) {
+        width: 100%;
+      }
+    }
+  }
+}

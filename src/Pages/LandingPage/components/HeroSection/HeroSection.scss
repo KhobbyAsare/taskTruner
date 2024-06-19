@@ -1,0 +1,141 @@
+@import "../../../../shared-scss-styles/all-scss-imports.scss";
+
+.hero-wrapper {
+  width: 100%;
+  .container {
+    width: 60%;
+    margin: 0 auto;
+
+    @include screen-breakpoints(phone) {
+      width: 90%;
+    }
+
+    @include screen-breakpoints(tablet-portrait) {
+      width: 95%;
+    }
+    .hero-content {
+      width: 100%;
+      padding: 50px 0 0;
+      text-align: center;
+      @include display-flex(column, center, center);
+
+      .first-p-tag {
+        font-size: 1.2rem;
+        color: $primary_color;
+        margin-bottom: 20px;
+        font-weight: bold;
+        @include screen-breakpoints(tablet-portrait) {
+          font-size: 1.4rem;
+        }
+
+        @include screen-breakpoints(phone) {
+          font-size: 1.1rem;
+        }
+      }
+      h1 {
+        font-size: 3rem;
+        color: $color-black;
+        margin-bottom: 20px;
+
+        @include screen-breakpoints(tablet-portrait) {
+          font-size: 3.5rem;
+        }
+
+        @include screen-breakpoints(phone) {
+          font-size: 1.5rem;
+        }
+      }
+
+      .second-p-tag {
+        font-size: 1.1rem;
+        color: #4d4d4d;
+        margin-bottom: 20px;
+        
+
+        @include screen-breakpoints(tablet-portrait) {
+          font-size: 1.3rem;
+        }
+
+        @include screen-breakpoints(phone) {
+          font-size: 1rem;
+        }
+      }
+
+      .btns {
+        padding: 20px 0;
+        @include display-flex(row, center, center);
+        column-gap: 20px;
+        .btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 15px;
+          gap: 15px;
+          outline: 3px transparent solid;
+          outline-offset: -3px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          transition: 400ms;
+          height: 45px;
+        //   width: 170px;
+
+          @include screen-breakpoints(phone) {
+            padding: 14px !important;
+          }
+
+          @include screen-breakpoints(tablet-portrait) {
+            padding: 20px;
+          }
+
+          &:first-child {
+            background-color: $primary_color;
+            color: $color-white;
+            transition: all ease-in-out 600ms;
+
+            &:hover {
+              background-color: transparent;
+              color: $primary_color;
+              outline: $primary_color solid 3px;
+            }
+          }
+          &:last-child {
+            outline: #000 solid 3px;
+            color: $color-black;
+            background-color: transparent;
+            transition: all ease-in-out 600ms;
+
+            &:hover {
+              background-color: #000;
+              color: $color-white;
+            }
+          }
+        }
+      }
+
+      .lottie-holder {
+        // background-color: #ffffff2e;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+        @include display-flex(column, center, center);
+        .lottie {
+          width: 600px;
+          height: 600px;
+
+          @include screen-breakpoints(tablet-portrait) {
+            width: 500px;
+            height: 500px;
+          }
+
+          @include screen-breakpoints(phone) {
+            width: 300px;
+            height: 300px;
+          }
+        }
+      }
+    }
+    @include display-flex(column, flex-start, center);
+  }
+}
