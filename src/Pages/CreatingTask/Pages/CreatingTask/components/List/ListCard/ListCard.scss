@@ -1,55 +1,35 @@
 @import "../../../../../../../shared-scss-styles/all-scss-imports.scss";
 
-.card-wrapper {
-  min-width: 330px;
+.list-wrapper {
+  min-width: 250px;
   border: 1.5px solid #80808063;
   border-radius: 5px;
-  padding: 10px;
-  flex-direction: column;
-  display: flex;
-  row-gap: 10px;
+  padding: 8px;
+  height: fit-content;
+  @include display-flex(column, flex-start, flex-start);
+  row-gap: 5px;
 
-  @include screen-breakpoints(desktop) {
-    width: 100%;
-  }
-
-  
-
-  &:hover {
-    border: 1.5px solid $primary-color;
-  }
-
-  .taskname {
-    font-size: 1.4rem;
-    font-weight: bold;
+  p {
     margin: 0;
   }
 
-  .taskdescription {
-    font-size: 0.955rem;
-    color: #999ca0;
-    margin: 0;
+  .task-name {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-
-  .date {
-    font-size: 0.8rem;
-    color: $primary-color;
-    margin: 0;
-    font-weight: bold;
-    span {
-      color: #000;
+    h3 {
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0;
     }
   }
 
-  .profile-icon {
+  .profile-icons {
     @include display-flex(row, flex-start, center);
     .profile {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background-color: #f5f5f5;
       display: flex;
@@ -69,6 +49,18 @@
       &:first-child {
         margin: 0px;
       }
+    }
+  }
+
+  .comments-count {
+    font-size: 0.8rem;
+    color: #999ca0;
+    margin: 0;
+    width: 100%;
+    @include display-flex(row, space-between, center);
+    span {
+      font-weight: bold;
+      color: $primary-color;
     }
   }
 }

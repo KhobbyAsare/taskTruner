@@ -1,19 +1,12 @@
-import {  useEffect, useState } from "react";
+import { useState } from "react";
 import "./NavigationBar.scss";
 import useBrand from "../../../context-api/Brandname-context/brandname";
-import useAuth from "../../../context-api/AuthContext/auth";
+
 import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { brandname } = useBrand();
-  const { user, isLoggedIn } = useAuth();
-
-  useEffect(()=>{
-    console.log(user)
-  })
-
- 
 
   return (
     <>
@@ -38,7 +31,6 @@ const NavigationBar = () => {
             </Link>
           </div>
           <button className="signup-btn">
-            {isLoggedIn ? user.name : "Signup"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20px"

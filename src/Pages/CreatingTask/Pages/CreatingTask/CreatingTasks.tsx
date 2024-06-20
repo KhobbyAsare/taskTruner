@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./CreatingTasks.scss";
 import Board from "./components/Board/Board";
-import List from "./components/Board/List/List";
+import List from "./components/List/List";
+import TimeLineChart from "./components/TimeLine/TimeLine";
 
 const CreatingTasks = () => {
   const [taskComponent, setTaskComponet] = useState("Board");
@@ -9,22 +10,6 @@ const CreatingTasks = () => {
   return (
     <section className="creatingTask-wrapper">
       <header>
-        <div className="search-wrapper">
-          <div className="search">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-            >
-              <g fill="none" stroke="#666666">
-                <circle cx="11" cy="11" r="6" />
-                <path strokeLinecap="round" d="m20 20l-3-3" />
-              </g>
-            </svg>
-            <input type="text" placeholder="Search" className="input-field" />
-          </div>
-        </div>
         <div className="creating-new-task">
           <div className="task-details">
             <p className="task-breadcrum">
@@ -94,8 +79,8 @@ const CreatingTasks = () => {
 
       <div className="content-container">
         {taskComponent === "Board" && <Board />}
-        {taskComponent === "List" && <List/>}
-        {taskComponent === "Timeline" && <div>Timeline</div>}
+        {taskComponent === "List" && <List />}
+        {taskComponent === "Timeline" && <TimeLineChart />}
         {taskComponent === "Assigned" && <div>Assigned</div>}
       </div>
     </section>

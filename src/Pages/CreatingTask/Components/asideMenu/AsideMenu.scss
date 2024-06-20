@@ -7,6 +7,19 @@ aside {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.144);
   flex-direction: column;
   display: flex;
+  overflow: hidden;
+
+  @include screen-breakpoints(desktop){
+    width: 220px;
+  }
+
+  @include screen-breakpoints(tablet-portrait){
+    display: none;
+  }
+
+  @include screen-breakpoints(tablet-landscape){
+    display: none;
+  }
 
   header {
     height: 7%;

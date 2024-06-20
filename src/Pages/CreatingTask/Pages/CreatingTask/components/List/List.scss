@@ -1,0 +1,28 @@
+@import "../../../../../../shared-scss-styles/all-scss-imports.scss";
+
+.listcard-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+ padding-top: 15rem;
+
+  @include screen-breakpoints(tablet-portrait) {
+    padding-top: 10rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  @include screen-breakpoints(tablet-landscape) {
+    padding-top: 11rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include screen-breakpoints(desktop) {
+     padding-top: 10rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include screen-breakpoints(phone) {
+    padding-top: 13rem;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}

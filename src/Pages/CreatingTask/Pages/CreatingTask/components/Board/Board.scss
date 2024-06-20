@@ -4,11 +4,31 @@
   .content-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    padding-top: 10rem;
 
-    .Backlog,
-    .Inprogress,
-    .Testing,
-    .Done {
+    @include screen-breakpoints(tablet-portrait) {
+       padding-top: 10rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include screen-breakpoints(tablet-landscape) {
+      padding-top: 11rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include screen-breakpoints(phone) {
+      padding-top: 12rem;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include screen-breakpoints(desktop){
+    padding-top: 10rem;
+    }
+
+    .backlog,
+    .inProgress,
+    .testing,
+    .done {
       display: flex;
       flex-direction: column;
       row-gap: 10px;
@@ -16,16 +36,24 @@
       border-right: 1px solid #f5f5f5;
       position: relative;
       height: 100%;
-      overflow-y: scroll;
+      padding-bottom: 5rem;
+      // overflow-y: scroll;
+      text-transform: capitalize;
       &:last-child {
         border: 0px;
       }
 
+      @include screen-breakpoints(tablet-portrait) {
+        padding: 5px;
+      }
+
       .title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #333;
         margin-bottom: 10px;
+        .title-text {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #333;
+        }
       }
     }
   }
