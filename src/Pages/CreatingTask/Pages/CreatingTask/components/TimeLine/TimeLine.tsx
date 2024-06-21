@@ -91,7 +91,7 @@ const TimeLineChart = () => {
           zoom: false, // Keep the zoom option
           zoomin: true, // Keep the zoom in option
           zoomout: true, // Keep the zoom out option
-          pan: false, // Remove the pan option
+          pan: true, // Remove the pan option
           reset: false, // Keep the reset option to reset the zoom level
           customIcons: [], // Remove any custom icons
         },
@@ -100,7 +100,8 @@ const TimeLineChart = () => {
     plotOptions: {
       bar: {
         horizontal: true,
-        barHeight: "80%",
+        barHeight: "90%",
+        borderRadius: 5,
       },
     },
     xaxis: {
@@ -111,7 +112,7 @@ const TimeLineChart = () => {
     },
     fill: {
       type: "solid",
-      opacity: 0.6,
+      opacity: 0.8,
     },
     legend: {
       position: "top",
@@ -121,12 +122,38 @@ const TimeLineChart = () => {
 
   return (
     <section className="timeLine-wrapper">
+      <div className="timeLine-header">
+        <div className="profile-icons">
+          <div className="profile">
+            <img
+              src="https://images.unsplash.com/photo-1718203695046-0dfd0976a198?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="assignee icon"
+            />
+            <span className="tooltip">Bob</span>
+          </div>
+          <div className="profile">
+            <img
+              src="https://images.unsplash.com/photo-1717978321659-7b93b42d97ea?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="assignee icon"
+            />
+            <span className="tooltip">Joe</span>
+          </div>
+          <div className="profile">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1708275670170-f92d0c82a1d3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="assignee icon"
+            />
+            <span className="tooltip">Dan</span>
+          </div>
+        </div>
+      </div>
       <div id="chart">
         <ReactApexChart
           options={options}
           series={series}
           type="rangeBar"
           height={450}
+          width="100%"
         />
       </div>
       <div id="html-dist"></div>
