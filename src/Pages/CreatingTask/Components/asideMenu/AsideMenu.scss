@@ -1,6 +1,6 @@
 @import "../../../../shared-scss-styles/all-scss-imports.scss";
 
-aside {
+.larger-screen {
   width: 300px;
   height: 100%;
   background-color: #f5f5f5;
@@ -9,16 +9,136 @@ aside {
   display: flex;
   overflow: hidden;
 
-  @include screen-breakpoints(desktop){
+  @include screen-breakpoints(desktop) {
     width: 220px;
   }
 
-  @include screen-breakpoints(tablet-portrait){
+  @include screen-breakpoints(tablet-portrait) {
     display: none;
   }
 
-  @include screen-breakpoints(tablet-landscape){
+  @include screen-breakpoints(tablet-landscape) {
     display: none;
+  }
+
+  header {
+    height: 9.6%;
+    .brand {
+      font-size: 1.5rem;
+      padding: 10px;
+      color: $primary-color;
+      font-weight: bold;
+    }
+    border-bottom: 1px solid #ccc;
+  }
+
+  .content {
+    flex: 1;
+    padding-bottom: 20px;
+    @include display-flex(column, space-between, flex-start);
+
+    .menu-links {
+      padding: 10px;
+      width: 100%;
+      .menu-text {
+        font-size: 1.1rem;
+        padding: 10px;
+        color: #999ca0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        .link {
+          color: #000;
+          display: flex;
+          column-gap: 10px;
+          align-items: center;
+          padding: 10px;
+          cursor: pointer;
+          transition: 0.3s;
+          border: 1px solid transparent;
+          border-radius: 5px;
+          &:hover {
+            border: 1px solid $primary-color;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+          }
+        }
+      }
+    }
+
+    .userProfile {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      width: 100%;
+
+      .userProfile__avatar {
+        width: 50px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ccc;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .userProfile__info {
+        margin-left: 10px;
+        width: 100%;
+        @include display-flex(column, center, flex-start);
+        .user-name {
+          font-size: 1rem;
+          color: #000000;
+          margin: 0;
+          font-weight: bold;
+        }
+        .speciality {
+          font-size: 0.8rem;
+          color: #bac4d2;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.tablet-smaller-screen {
+  width: 50%;
+  height: 100%;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.144);
+  flex-direction: column;
+  display: none;
+  overflow: hidden;
+  transition: ease-in-out 600ms left;
+
+  @include screen-breakpoints(tablet-portrait) {
+    display: flex;
+    position: fixed;
+    z-index: 30;
+    left: 0%;
+  }
+
+  @include screen-breakpoints(tablet-landscape) {
+    display: flex;
+    position: fixed;
+    z-index: 30;
+    left: 0%;
+  }
+
+  @include screen-breakpoints(phone) {
+    display: flex;
+    position: fixed;
+    z-index: 30;
+    left: 0%;
   }
 
   header {

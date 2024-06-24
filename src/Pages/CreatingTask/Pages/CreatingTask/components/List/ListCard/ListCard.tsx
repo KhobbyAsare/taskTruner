@@ -50,7 +50,7 @@ const ListCard = () => {
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
                   stroke="#344054"

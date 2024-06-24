@@ -5,9 +5,11 @@ function App() {
   const brandname: string = "taskTruner";
 
   return (
-    <BrandProvider value={{ brandname }}>
-      <LandingPage />
-    </BrandProvider>
+   
+      <BrandProvider value={{ brandname }}>
+        <LandingPage />
+      </BrandProvider>
+  
   );
 }
 

@@ -7,10 +7,32 @@
   position: relative;
 
   header {
-    width: 100%;
+    width: calc(100% - 260px);
     position: fixed;
     background-color: #fff;
     z-index: 3;
+
+    .brand-menu-btn {
+      display: none;
+      width: 100%;
+      padding: 10px ;
+
+      @include screen-breakpoints(tablet-portrait) {
+        @include display-flex(row, space-between, center);
+      }
+      @include screen-breakpoints(phone) {
+        @include display-flex(row, space-between, center);
+      }
+
+      .brand {
+        h2 {
+          font-size: 1.3rem;
+          font-weight: bold;
+          color: $primary_color;
+          cursor: pointer;
+        }
+      }
+    }
 
     .creating-new-task {
       padding: 10px;
@@ -47,6 +69,8 @@
           padding: 10px 20px;
           border: none;
           border-radius: 5px;
+          outline: none;
+          
           cursor: pointer;
           transition: 0.3s;
           border-radius: 5px;

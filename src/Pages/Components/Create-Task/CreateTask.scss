@@ -1,0 +1,213 @@
+@import "../../../shared-scss-styles/all-scss-imports.scss";
+
+.task-form-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(237, 237, 237, 0.936);
+  z-index: 100;
+  @include display-flex(row, center, center);
+  backdrop-filter: blur(5px);
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .assignee-text {
+    color: #808080;
+  }
+
+  .close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+  }
+
+  .container {
+    padding: 1.4rem;
+    border-radius: 0.375rem;
+    background: #ffffff;
+    box-shadow: 0px 1px 0px 0px rgba(151, 154, 158, 0.2) inset;
+    width: 50%;
+    border: 1px solid #d0d7de;
+
+    @include screen-breakpoints(desktop) {
+      width: 80%;
+    }
+
+    header {
+      padding: 0.5625rem 0.8rem;
+    }
+
+    form {
+      @include display-flex(column, center, flex-start);
+      row-gap: 10px;
+
+      input,
+      textarea,
+      .assigners {
+        outline: none;
+        border: none;
+        width: 100%;
+        padding: 0.5625rem 0.8rem;
+        background-color: transparent;
+        cursor: text;
+        border-radius: 0.375rem;
+        border: 1px solid #d0d7de;
+        background: #f6f8fa;
+        box-shadow: 0px 1px 0px 0px rgba(208, 215, 222, 0.2) inset;
+      }
+
+      textarea {
+        height: 300px;
+        resize: none;
+      }
+
+      .type-link {
+        width: 100%;
+        @include display-flex(row, center, space-between);
+        column-gap: 40px;
+
+        .type-dropdown {
+          width: 30%;
+        }
+      }
+
+      .text-wrapper {
+        width: 30%;
+
+        p {
+          font-weight: 600;
+        }
+      }
+
+      .assignees,
+      .due-date {
+        width: 100%;
+        @include display-flex(row, space-between, center);
+        column-gap: 40px;
+        .assignees-dropdown,
+        .date-input {
+          width: 100%;
+        }
+      }
+
+      .assignees {
+        .assignees-dropdown {
+          .assigners {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+
+            .selectAssignee {
+              background-color: rgb(255, 255, 255);
+              padding: 0.3rem 0.3rem;
+              border-radius: 0.375rem;
+              border: 1px solid #d0d7de;
+              cursor: pointer;
+              font-size: 0.8rem;
+              word-break: break-all;
+
+              &:hover {
+                background-color: #f6f8fa;
+              }
+            }
+          }
+          .assignees-wrapper {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+            row-gap: 7px;
+            flex-wrap: wrap;
+            padding: 5px;
+            .assignee {
+              background-color: rgb(255, 255, 255);
+              padding: 0.3rem 0.3rem;
+              border-radius: 0.375rem;
+              border: 1px solid #d0d7de;
+              cursor: pointer;
+              font-size: 0.8rem;
+              @include display-flex(row, center, space-between);
+              column-gap: 3px;
+
+              &:hover {
+                background-color: #f6f8fa;
+              }
+
+              .profile {
+                display: flex;
+                align-items: center;
+                column-gap: 5px;
+                width: 20px;
+                height: 20px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 50%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .created-by {
+        width: 100%;
+        @include display-flex(row, space-between, center);
+        column-gap: 40px;
+
+        .task-creator-name {
+          width: 100%;
+          @include display-flex(row, flex-start, center);
+          column-gap: 10px;
+          .profile {
+            width: 30px;
+            height: 30px;
+            @include display-flex(row, center, flex-start);
+            column-gap: 10px;
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+            p {
+              margin-bottom: 0;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .submit-btn {
+        @include display-flex(row, flex-end, center);
+        width: 100%;
+        padding: 0.5625rem 0.8rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        border: none;
+        margin-top: 20px;
+
+        button {
+          width: 30%;
+          background-color: $primary-color;
+          color: #ffffff;
+          border: none;
+          cursor: pointer;
+          padding: 0.5625rem 0.8rem;
+          border-radius: 0.375rem;
+          box-shadow: 0px 1px 0px 0px rgba(208, 215, 222, 0.2) inset;
+          transition: ease-in-out 600ms background-color;
+          &:hover {
+            background-color: lighten($primary-color, 10%);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,8 @@
-import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import Task from "./Pages/CreatingTask/Task";
 import CreatingTasks from "./Pages/CreatingTask/Pages/CreatingTask/CreatingTasks";
@@ -16,5 +20,4 @@ const router = createBrowserRouter(
   )
 );
 
-
-export default router
+export default router;

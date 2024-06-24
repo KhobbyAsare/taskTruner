@@ -31,6 +31,7 @@ const NavigationBar = () => {
             </Link>
           </div>
           <button className="signup-btn">
+            Signup
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20px"
@@ -89,7 +90,7 @@ const NavigationBar = () => {
           </div>
 
           <button className="signup-btn">
-            Signup{" "}
+            Signup
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20px"
