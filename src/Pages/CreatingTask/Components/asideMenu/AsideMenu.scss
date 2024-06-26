@@ -120,6 +120,10 @@
   overflow: hidden;
   transition: ease-in-out 600ms left;
 
+  @media screen and (width >= 901px) and (width <= 1200px) {
+    width: 30%;
+  }
+
   @include screen-breakpoints(tablet-portrait) {
     display: flex;
     position: fixed;

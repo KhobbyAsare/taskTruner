@@ -1,12 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateTask.scss";
 import Dropdown from "./Dropdown/Dropdown";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../../redux/Reducers/ProjectTask/projectTaskSlice";
 
 type ChildProps = {
   onBooleanChange: (value: boolean) => void;
 };
 
+interface Task {
+  taskname: string;
+  description: string;
+  taskType: string;
+  assignees: {
+    name: string;
+    profileIcon?: string;
+  }[]; // Explicitly define assignees as string[]
+  dueDate: string;
+  creator: string;
+  link: string;
+  profileIcon?: string;
+  currentStatus?: "backlog" | "in-progress" | "done";
+}
+
 const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
+  const dispatch = useDispatch();
+
+  const [task, setTask] = useState<Task>({
+    taskname: "",
+    description: "",
+    taskType: "",
+    assignees: [],
+    dueDate: "",
+    creator: "",
+    link: "",
+    profileIcon: "",
+    currentStatus: "backlog",
+  });
+
+  const [selectAssignee, setSelectAssignee] = useState<string[]>([]);
+
   const taskType: string[] = ["bug", "feature", "maintenance"];
   const assignees: string[] = [
     "Andrew Hans",
@@ -18,8 +51,6 @@ const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
     "Michael Gray",
     "John Shelby",
   ];
-
-  const [selectAssignee, setSelectAssignee] = useState<string[]>([]);
 
   const handleAssigneeSelect = (assignee: string) => {
     if (selectAssignee.includes(assignee)) {
@@ -38,6 +69,82 @@ const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
     color: "#fff",
   };
 
+  const getDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const date = new Date(e.target.value);
+    const day = date.getDate(); // Get the day as a number.
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const monthName = monthNames[date.getMonth()]; // Get the full month name.
+    const year = date.getFullYear(); // Get the year.
+
+    // Format the date as DD-MMM-YYYY. For example, 02-May-2024.
+    // If the day is a single digit, pad it with a leading zero.
+    const formattedDate = `${day
+      .toString()
+      .padStart(2, "0")}-${monthName.substring(0, 3)}-${year}`;
+
+    setTask({ ...task, dueDate: formattedDate });
+  };
+  // Update the task object when selectAssignee changes
+
+  useEffect(() => {
+    // setTask({ ...task, assignees: [...selectAssignee] });
+    setTask({ ...task, assignees: selectAssignee.map((name) => ({ name })) });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectAssignee]);
+
+  //  Update the task object when taskType changes in the dropdown
+
+  const handleDropdownTypeSelect = (selectedType: string) => {
+    setTask({ ...task, taskType: selectedType });
+  };
+
+  const submitTask = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const taskToDispatch = {
+      taskname: task.taskname,
+      description: task.description,
+      type: task.taskType,
+      assigners: task.assignees.map((assignee) => ({
+        name: assignee.name,
+        profileIcon:
+          "https://images.unsplash.com/photo-1718613205605-d933afdd1f36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      })),
+      dueDate: task.dueDate,
+      creator: task.creator,
+      link: task.link,
+      profileIcon:
+        task.profileIcon ||
+        "https://images.unsplash.com/photo-1715630915001-35be2d8dba4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMzZ8fHxlbnwwfHx8fHw%3D", // Provide a default value if undefined
+      currentStatus: "backlog" as
+        | "backlog"
+        | "in-progress"
+        | "done"
+        | undefined,
+    };
+
+    dispatch(addTask(taskToDispatch));
+
+    localStorage.setItem("tasks", JSON.stringify(taskToDispatch));
+
+    onBooleanChange(false);
+
+  
+  };
+
   return (
     <section className="task-form-wrapper">
       <div className="close">
@@ -51,8 +158,8 @@ const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
           <path
             fill="none"
             stroke="#666666"
-            stroke-linecap="round"
-            stroke-width="1.5"
+            strokeLinecap="round"
+            strokeWidth="1.5"
             d="m14.5 9.5l-5 5m0-5l5 5M7 3.338A9.954 9.954 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"
           />
         </svg>
@@ -61,16 +168,34 @@ const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
         <header>
           <h2>Create A New Task</h2>
         </header>
-        <form>
-          <input type="text" placeholder="Task Title..." name="tasktitle" />
-          <textarea name="description" placeholder="Description..."></textarea>
-          <div className="type-link">
+        <form onSubmit={($event) => submitTask($event)}>
+          <input
+            type="text"
+            placeholder="Task Title..."
+            name="tasktitle"
+            onChange={(e) => setTask({ ...task, taskname: e.target.value })}
+          />
+          <textarea
+            name="description"
+            placeholder="Description..."
+            onChange={(e) => setTask({ ...task, description: e.target.value })}
+          ></textarea>
+          <div className="type-link right">
             <div className="type-dropdown">
-              <Dropdown type="Task Type" data={taskType} />
+              <Dropdown
+                type="Task Type"
+                data={taskType}
+                onTypeSelect={handleDropdownTypeSelect}
+              />
             </div>
-            <input type="text" placeholder="Link (Optional)" name="typelink" />
+            <input
+              type="text"
+              placeholder="Link (Optional)"
+              name="typelink"
+              onChange={(e) => setTask({ ...task, link: e.target.value })}
+            />
           </div>
-          <div className="assignees">
+          <div className="assignees right">
             <div className="text-wrapper">
               <p>Assignees :</p>
             </div>
@@ -108,15 +233,15 @@ const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
               </div>
             </div>
           </div>
-          <div className="due-date">
+          <div className="due-date right">
             <div className="text-wrapper">
               <p>Due Date :</p>
             </div>
             <div className="date-input">
-              <input type="date" name="due-date" />
+              <input type="date" name="due-date" onChange={(e) => getDate(e)} />
             </div>
           </div>
-          <div className="created-by">
+          <div className="created-by right">
             <div className="text-wrapper">
               <p>Created By :</p>
             </div>
@@ -127,7 +252,7 @@ const CreateTask: React.FC<ChildProps> = ({ onBooleanChange }) => {
                   alt="profile"
                 />
               </div>
-              <p className="name"> Andrew Hans</p>
+              <h2 className="name">Andrew Hans</h2>
             </div>
           </div>
 

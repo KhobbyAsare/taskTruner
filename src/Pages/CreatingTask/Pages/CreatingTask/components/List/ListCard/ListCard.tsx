@@ -1,8 +1,22 @@
 import "./ListCard.scss";
 
-const ListCard = () => {
-  const CardType: string = "Feature";
+interface Task {
+  id: string;
+  taskname: string;
+  description: string;
+  type: string;
+  assigners: {
+    name: string;
+    profileIcon?: string;
+  }[];
+  dueDate: string;
+  creator: string;
+  link: string;
+  profileIcon: string;
+  currentStatus?: "backlog" | "in-progress" | "done";
+}
 
+const ListCard = ({ task }: { task: Task }) => {
   const bugStyle = {
     borderLeft: "2px solid red",
   };
@@ -14,10 +28,10 @@ const ListCard = () => {
   return (
     <div
       className="list-wrapper"
-      style={CardType === "Bug" ? bugStyle : featureStyle}
+      style={task.type === "bug" ? bugStyle : featureStyle}
     >
       <div className="task-name">
-        <h3>User Profile Page</h3>
+        <h3>{task.taskname}</h3>
       </div>
       <div className="profile-icons">
         <div className="profile">
@@ -39,7 +53,7 @@ const ListCard = () => {
         </p>
 
         <span>
-          {CardType === "Bug" ? (
+          {task.type === "bug" ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"

@@ -7,9 +7,11 @@ import gear from "../../../../assets/taskType/gear.png";
 const Dropdown = ({
   type = "Select",
   data,
+  onTypeSelect, // Add this line
 }: {
   type: string;
   data: string[];
+  onTypeSelect: (selectedType: string) => void; // Add this line
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(type);
@@ -17,6 +19,7 @@ const Dropdown = ({
   const handleTypeSelect = (type: string) => {
     setSelectedType(type);
     setIsDropdownOpen(false);
+    onTypeSelect(type); // Add this line
   };
 
   return (

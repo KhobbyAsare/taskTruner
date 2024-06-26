@@ -4,7 +4,12 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
- padding-top: 15rem;
+  padding-top: 12rem;
+
+  @media screen and (min-width: 600px) and (max-width: 1200px) {
+    padding-top: 15rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 
   @include screen-breakpoints(tablet-portrait) {
     padding-top: 10rem;
@@ -17,12 +22,12 @@
   }
 
   @include screen-breakpoints(desktop) {
-     padding-top: 10rem;
+    padding-top: 10rem;
     grid-template-columns: repeat(3, 1fr);
   }
 
   @include screen-breakpoints(phone) {
-    padding-top: 13rem;
+    padding-top: 17rem;
     grid-template-columns: repeat(1, 1fr) !important;
   }
 }
