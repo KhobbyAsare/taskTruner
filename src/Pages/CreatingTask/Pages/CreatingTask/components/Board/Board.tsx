@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DragDropContext,
   Droppable,
@@ -9,27 +9,35 @@ import {
 } from "@hello-pangea/dnd";
 import "./Board.scss";
 import Card from "./Card/Card";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../../redux/store/store";
+import { useDispatch } from "react-redux";
+import { moveTaskTo } from "../../../../../../redux/Reducers/ProjectTask/projectTaskSlice";
 
 interface Item {
   id: string;
-  content: CardContent;
+  content: Task;
 }
 
 interface List {
   [key: string]: Item[];
 }
 
-interface CardContent {
+interface Task {
   id: string;
-  title: string;
+  taskname: string;
   description: string;
-  dueDate: string;
-  assignees: {
+  type: string;
+  assigners: {
     name: string;
-    avatar: string;
+    profileIcon?: string;
   }[];
+  dueDate: string;
+  creator: string;
+  link: string;
+  profileIcon: string;
+  currentStatus?: "backlog" | "in-progress" | "done";
 }
-[];
 
 // Reordering the result within the same list
 const reorder = (
@@ -62,143 +70,76 @@ const move = (
 
   return result;
 };
+
 const Board: React.FC = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector((state: RootState) => state.TasksSlice.tasks);
+
   const [state, setState] = useState<List>({
-    backlog: [
-      {
-        id: "1",
-        content: {
-          id: "task-1",
-          title: "Design User Interface",
-          description:
-            "Create the initial design mockups for the new user profile page.",
-          dueDate: "2024-07-12",
-          assignees: [
-            {
-              name: "Alex Johnson",
-              avatar:
-                "https://images.unsplash.com/photo-1718203695046-0dfd0976a198?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-            {
-              name: "Jamie Smith",
-              avatar:
-                "https://images.unsplash.com/photo-1718073725822-96f864f08837?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-          ],
-        },
-      },
-      {
-        id: "2",
-        content: {
-          id: "task-2",
-          title: "Implement Authentication",
-          description:
-            "Develop the authentication logic and integrate it with the backend.",
-          dueDate: "2024-07-20",
-          assignees: [
-            {
-              name: "Sam Taylor",
-              avatar:
-                "https://images.unsplash.com/photo-1659956956591-73af98b68fe8?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-          ],
-        },
-      },
-      {
-        id: "3",
-        content: {
-          id: "task-3",
-          title: "Database Optimization",
-          description:
-            "Analyze the current database schema and apply optimizations for performance.",
-          dueDate: "2024-08-05",
-          assignees: [
-            {
-              name: "Jordan Lee",
-              avatar:
-                "https://images.unsplash.com/photo-1715630915001-35be2d8dba4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMzZ8fHxlbnwwfHx8fHw%3D",
-            },
-            {
-              name: "Casey Kim",
-              avatar:
-                "https://images.unsplash.com/photo-1717978321659-7b93b42d97ea?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-          ],
-        },
-      },
-      {
-        id: "4",
-        content: {
-          id: "task-4",
-          title: "Database Optimization",
-          description:
-            "Analyze the current database schema and apply optimizations for performance.",
-          dueDate: "2024-08-05",
-          assignees: [
-            {
-              name: "Jordan Lee",
-              avatar:
-                "https://images.unsplash.com/photo-1715630915001-35be2d8dba4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMzZ8fHxlbnwwfHx8fHw%3D",
-            },
-            {
-              name: "Casey Kim",
-              avatar:
-                "https://images.unsplash.com/photo-1717978321659-7b93b42d97ea?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-          ],
-        },
-      },
-      {
-        id: "5",
-        content: {
-          id: "task-5",
-          title: "Database Optimization",
-          description:
-            "Analyze the current database schema and apply optimizations for performance.",
-          dueDate: "2024-08-05",
-          assignees: [
-            {
-              name: "Jordan Lee",
-              avatar:
-                "https://images.unsplash.com/photo-1715630915001-35be2d8dba4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMzZ8fHxlbnwwfHx8fHw%3D",
-            },
-            {
-              name: "Casey Kim",
-              avatar:
-                "https://images.unsplash.com/photo-1717978321659-7b93b42d97ea?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-          ],
-        },
-      },
-      {
-        id: "6",
-        content: {
-          id: "task-6",
-          title: "Database Optimization",
-          description:
-            "Analyze the current database schema and apply optimizations for performance.",
-          dueDate: "2024-08-05",
-          assignees: [
-            {
-              name: "Jordan Lee",
-              avatar:
-                "https://images.unsplash.com/photo-1715630915001-35be2d8dba4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMzZ8fHxlbnwwfHx8fHw%3D",
-            },
-            {
-              name: "Casey Kim",
-              avatar:
-                "https://images.unsplash.com/photo-1717978321659-7b93b42d97ea?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
-          ],
-        },
-      },
-    ],
+    backlog: [],
     inProgress: [],
     testing: [],
     done: [],
   });
 
+  const segregateTasks = (tasks: Task[]) => {
+    const segregatedTasks: List = {
+      backlog: [],
+      inProgress: [],
+      testing: [],
+      done: [],
+    };
+
+    tasks.forEach((task) => {
+      if (task.currentStatus) {
+        segregatedTasks[task.currentStatus].push({
+          id: task.id,
+          content: task,
+        });
+      }
+    });
+
+    return segregatedTasks;
+  };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    setState(segregateTasks(tasks));
+  }, [tasks]);
+
   const getList = (id: string): Item[] => state[id];
+
+  // const onDragEnd = (result: DropResult): void => {
+  //   const { source, destination } = result;
+
+  //   // Dropped outside the list
+  //   if (!destination) {
+  //     return;
+  //   }
+
+  //   if (source.droppableId === destination.droppableId) {
+  //     const items = reorder(
+  //       getList(source.droppableId),
+  //       source.index,
+  //       destination.index
+  //     );
+
+  //     setState({ ...state, [source.droppableId]: items });
+  //   } else {
+  //     const result = move(
+  //       getList(source.droppableId),
+  //       getList(destination.droppableId),
+  //       source,
+  //       destination
+  //     );
+
+  //     setState({
+  //       ...state,
+  //       [source.droppableId]: result[source.droppableId],
+  //       [destination.droppableId]: result[destination.droppableId],
+  //     });
+  //   }
+  // };
 
   const onDragEnd = (result: DropResult): void => {
     const { source, destination } = result;
@@ -228,6 +169,19 @@ const Board: React.FC = () => {
         ...state,
         [source.droppableId]: result[source.droppableId],
         [destination.droppableId]: result[destination.droppableId],
+      });
+
+      // Dispatch the moveTaskTo action for each moved task
+      result[destination.droppableId].forEach((item: Item) => {
+        dispatch(
+          moveTaskTo({
+            taskId: item.id,
+            status: destination.droppableId as
+              | "backlog"
+              | "in-progress"
+              | "done",
+          })
+        );
       });
     }
   };

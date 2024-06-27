@@ -6,6 +6,7 @@ import {
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import Task from "./Pages/CreatingTask/Task";
 import CreatingTasks from "./Pages/CreatingTask/Pages/CreatingTask/CreatingTasks";
+import TaskPreview from "./Pages/CreatingTask/Components/TaskPreview/TaskPreview";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
         <Route path="" element={<CreatingTasks />} />
         <Route path="new" element={<div>New Task</div>} />
       </Route>
+      <Route path="preview" element={<TaskPreview/>} />
       <Route path="*" element={<div>Not Found</div>} />
     </Route>
   )
