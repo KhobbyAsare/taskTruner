@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import SideMenu from "../Reducers/SideNavMenu/sideNavSlice";
 import TasksSlice from "../Reducers/ProjectTask/projectTaskSlice";
+import PreviewSlice from "../Reducers/TaskPreview/TaskPreviewSlice";
 
 
 // If you have multiple reducers, combine them. Otherwise, this step is for future-proofing.
@@ -12,6 +13,7 @@ export const store = configureStore({
   reducer: {
     SideMenu,
     TasksSlice,
+    PreviewSlice,
   }, // Use the combined reducer here
 });
 

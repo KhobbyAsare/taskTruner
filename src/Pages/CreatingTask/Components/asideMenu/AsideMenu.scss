@@ -47,10 +47,19 @@
         cursor: pointer;
         transition: 0.3s;
       }
-      ul {
+      .nav-links {
         list-style: none;
         padding: 0;
         margin: 0;
+        & .link.active {
+          font-weight: bold;
+          color: $primary-color;
+
+          svg > path {
+            fill: $primary-color;
+            font-weight: bold;
+          }
+        }
         .link {
           color: #000;
           display: flex;

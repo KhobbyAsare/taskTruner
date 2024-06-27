@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreatingTasks.scss";
 import Board from "./components/Board/Board";
 import List from "./components/List/List";
@@ -9,11 +9,26 @@ import { toggleMenu } from "../../../../redux/Reducers/SideNavMenu/sideNavSlice"
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store/store";
 import CreateTask from "../../../Components/Create-Task/CreateTask";
+import TaskPreview from "../../Components/TaskPreview/TaskPreview";
 
 const CreatingTasks = () => {
   const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
   const [taskComponent, setTaskComponet] = useState("Board");
   const { brandname } = useBrand();
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const tasks = useSelector((state: RootState) => state.PreviewSlice.tasks);
+
+  useEffect(() => {
+    if (tasks) {
+      setIsPreviewOpen(true);
+    } else if (tasks === undefined) {
+      setIsPreviewOpen(false);
+    }
+  }, [tasks]);
+
+  useEffect(() => {
+    setIsPreviewOpen(false);
+  }, []);
 
   const dispatch = useDispatch();
   const [toggleSideNav, setToggleSideNav] = useState(false);
@@ -152,6 +167,8 @@ const CreatingTasks = () => {
         </div>
       </section>
       {isTaskFormOpen && <CreateTask onBooleanChange={handleBooleanChange} />}
+
+      {isPreviewOpen && tasks && <TaskPreview task={tasks} />}
     </>
   );
 };

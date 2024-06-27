@@ -30,7 +30,7 @@ const AsideMenu = () => {
         <div className="content">
           <div className="menu-links">
             <p className="menu-text">Menu</p>
-            <ul>
+            <ul className="nav-links">
               <NavLink to="/tasks" className="link">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

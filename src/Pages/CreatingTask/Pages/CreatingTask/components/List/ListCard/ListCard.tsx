@@ -1,4 +1,6 @@
+import { addTaskPreview } from "../../../../../../../redux/Reducers/TaskPreview/TaskPreviewSlice";
 import "./ListCard.scss";
+import { useDispatch } from "react-redux";
 
 interface Task {
   id: string;
@@ -16,7 +18,13 @@ interface Task {
   currentStatus?: "backlog" | "in-progress" | "done";
 }
 
-const ListCard = ({ task }: { task: Task }) => {
+type ListChildProps = {
+  task: Task;
+};
+
+const ListCard: React.FC<ListChildProps> = ({ task }) => {
+  const dispatch = useDispatch();
+
   const bugStyle = {
     borderLeft: "2px solid red",
   };
@@ -29,6 +37,7 @@ const ListCard = ({ task }: { task: Task }) => {
     <div
       className="list-wrapper"
       style={task.type === "bug" ? bugStyle : featureStyle}
+      onClick={() => dispatch(addTaskPreview(task))}
     >
       <div className="task-name">
         <h3>{task.taskname}</h3>
