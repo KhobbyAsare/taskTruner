@@ -1,0 +1,56 @@
+@import "../../shared-scss-styles/all-scss-imports.scss";
+
+.modal-wrapper {
+  .modal-content {
+    width: 500px;
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid $primary_color;
+    padding: 10px;
+    @include display-flex(column, flex-start, center);
+    header {
+      @include display-flex(row, space-between, center);
+      width: 100%;
+
+      .modal-text {
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .close-btn{
+        background-color: #f1f1f1;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+          background-color: #e1e1e1;
+        }
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      color: #7f8c8d;
+      margin-bottom: 0;
+    }
+    .email-input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: text;
+    }
+
+    .send-btn {
+      width: 50%;
+      margin-top: 10px;
+      padding: 5px;
+      background-color: $primary_color;
+      color: #fff;
+      border-radius: 5px;
+    }
+  }
+}

@@ -133,11 +133,16 @@
     width: 30%;
   }
 
+  @include screen-breakpoints(phone) {
+    width: 50% !important;
+  }
+
   @include screen-breakpoints(tablet-portrait) {
     display: flex;
     position: fixed;
     z-index: 30;
     left: 0%;
+    width:30%;
   }
 
   @include screen-breakpoints(tablet-landscape) {

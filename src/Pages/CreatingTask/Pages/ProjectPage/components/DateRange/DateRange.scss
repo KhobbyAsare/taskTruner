@@ -1,0 +1,23 @@
+@import "../../../../../../shared-scss-styles/all-scss-imports.scss";
+
+.range-picker-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  width: fit-content;
+}
+.date-picker {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: .9rem;
+  color: $primary-color;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #e1e1e1;
+  }
+  
+}

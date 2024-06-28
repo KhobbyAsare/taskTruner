@@ -1,0 +1,27 @@
+@import "../../shared-scss-styles/all-scss-imports.scss";
+
+.brand-menu-btn {
+  display: none;
+  width: 100%;
+  padding: 10px;
+
+  @media screen and (width >= 901px) and (width <= 1200px) {
+    @include display-flex(row, space-between, center);
+  }
+
+  @include screen-breakpoints(tablet-portrait) {
+    @include display-flex(row, space-between, center);
+  }
+  @include screen-breakpoints(phone) {
+    @include display-flex(row, space-between, center);
+  }
+
+  .brand {
+    h2 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: $primary_color;
+      cursor: pointer;
+    }
+  }
+}

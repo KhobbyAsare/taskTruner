@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react";
 
 export const BrandContext = createContext({
-  brandname: "taskTruner",
+  brandname: "Dexefy",
 });
 
 export const BrandProvider = BrandContext.Provider;
